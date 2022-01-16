@@ -1,0 +1,120 @@
+<html>
+  <div class="header-div">
+    <h1>First HTML please don't sue my ass :P</h1>
+    <h1>Budget Stopwatch</h1>
+    <h2>Click the button to start and stop the stopwatch!</h2>
+  </div>
+
+  <div class="timer-counter alignText">
+    <h2 id="oonga_boonga">00:00:00</h2>
+  </div>
+
+  <div class="container">
+    <button class="start-button alignButton spaces" onclick="start()">
+      <h2>start/stop</h2>
+    </button>
+
+    <button class="reset-button alignButton spaces" onclick="reset()">
+      <h2>reset</h2>
+    </button>
+  </div>
+  <div class="profile">
+    <a href="https://www.linkedin.com/in/quinton-lin/" target="_blank">
+      This is my linkedin profile if you like what I do :P
+    </a>
+  </div>
+</html>
+
+<style>
+  body {
+    background-color: orange;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+
+  .header-div {
+    text-align: center;
+  }
+
+  .alignText {
+    text-align: center;
+  }
+
+  .container {
+    display: flex;
+    justify-content: center;
+  }
+
+  .spaces {
+    margin: 10px;
+  }
+  .profile {
+    position: absolute;
+    bottom: 0px;
+    right: 0;
+    width: 350;
+  }
+</style>
+
+<script>
+  let counter = document.getElementById("oonga_boonga");
+  console.log(counter);
+
+  let onOff = false;
+
+  const start = () => {
+    console.log("Clicked");
+
+    if (onOff === false) {
+      onOff = true;
+    } else {
+      onOff = false;
+    }
+    console.log(onOff);
+  };
+
+  let seconds = 0;
+  let minutes = 0;
+  let hours = 0;
+
+  var myfunc = setInterval(function () {
+    if (onOff === true) {
+      seconds = parseInt(seconds);
+      minutes = parseInt(minutes);
+      hours = parseInt(hours);
+      seconds += 1;
+      console.log("1");
+      console.log(typeof seconds);
+      if (seconds === 60) {
+        seconds = 0;
+        minutes += 1;
+        console.log(minutes);
+      }
+      if (minutes === 60) {
+        minutes = 0;
+        hours += 1;
+      }
+      if (seconds < 10) {
+        seconds = "0" + seconds;
+      }
+
+      if (minutes < 10) {
+        minutes = "0" + minutes;
+      }
+
+      if (hours < 10) {
+        hours = "0" + hours;
+      }
+      counter.innerText = `${hours}:${minutes}:${seconds}`;
+    }
+  }, 1000);
+
+  const reset = () => {
+    minutes = "00";
+    seconds = "00";
+    hours = "00";
+    counter.innerText = `${hours}:${minutes}:${seconds}`;
+  };
+</script>
